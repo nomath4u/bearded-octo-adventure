@@ -4,15 +4,29 @@
  ** Date of Last Update: 9/10/12             
  ****************************************************/
 
+//Libraries
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+
+//Constants
 #define TITLE "Untitled"
 
+//Prototypes
 bool displayTitleScreen();
+void beginGame();
+void getName();
 
+//Global Constants
+char *user;
 
 int main(){
-	displayTitleScreen();
+	//Allocate username memory
+	user = (char *)malloc(10 * sizeof(char));
+
+	if(displayTitleScreen()){
+		beginGame();
+	}
 	return 0;
 }
 
@@ -42,4 +56,15 @@ bool displayTitleScreen(){
 			printf("Invalid selection \n");
 		}
 	}
+	return again;
+}
+
+void beginGame(){
+	getName();
+}
+
+void getName(){
+	printf("Enter your name (10 character max)\n");
+	scanf("%s", user);
+	printf("%s \n", user);
 }
